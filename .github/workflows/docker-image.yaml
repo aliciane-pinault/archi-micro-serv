@@ -1,11 +1,11 @@
 name: Docker Image CI
 
 on:
- workflow_dispatch:
- push:
-  branches: [ master ]
- pull_request:
-  branches: [ master ]
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   code-analysis:
@@ -18,7 +18,7 @@ jobs:
      - name: Configure Python
        uses: actions/setup-python@v2
        with:
-        python-version: '3.8'
+         python-version: '3.8'
 
      - name: Code linter
        run: |
@@ -28,11 +28,11 @@ jobs:
          pylint `ls -R | grep .py$ | xargs`
 
    build-docker:
-    runs-on: ubuntu-latest
-    env:
-     MICRO_SERVICE_VERSION: "3.0"
+     runs-on: ubuntu-latest
+     env:
+       MICRO_SERVICE_VERSION: "3.0"
   
-    steps:
+     steps:
      - name: Checkout sources
        uses: actions/checkout@v2
      - name: Build the Docker image
